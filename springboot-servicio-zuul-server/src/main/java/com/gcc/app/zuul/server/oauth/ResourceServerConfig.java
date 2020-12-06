@@ -39,9 +39,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	//Se configuran las rutas
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		//http
 		http
 		.authorizeRequests()
-		.antMatchers("/api/security/ouath/**").permitAll()
+		.antMatchers("/api/security/oauth/**").permitAll()
 		.antMatchers(HttpMethod.GET,"/api/productos/listar",
 				"/api/items/listar",
 				"/api/usuarios/usuarios").permitAll()
@@ -70,7 +71,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 				 "/api/items/crear/id{id}",
 				 "/api/usuarios/usuarios/{id}")
 		.hasRole("ADMIN")
-		//.anyRequest().authenticated();
+		.anyRequest().permitAll()
+		/*.and().portMapper().http(8080).mapsTo(8443)*/
+		
 		.and().cors().configurationSource(configurationSource());
 		
 	}
