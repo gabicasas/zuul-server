@@ -32,6 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	//Se configura el token jwt
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+		
 		resources.tokenStore(tokenStore()); // El mismo que el del servicio oauth (copy paste) 
 	}
 
@@ -101,7 +102,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter jwtAccessTokenConverter= new JwtAccessTokenConverter();
-		jwtAccessTokenConverter.setSigningKey(environment.getProperty("config.security.ouath.jwt.key"));
+		jwtAccessTokenConverter.setSigningKey(environment.getProperty("config.security.oauth.jwt.key"));
 		return jwtAccessTokenConverter;
 	}
 	
